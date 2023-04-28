@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
@@ -14,8 +12,8 @@
        default-lazy-init="true">
 
     <!-- Ativa recursos automáticos no Spring como Injeção de Dependecia por anotações -->
-    <context:annotation-config/>
-    <context:component-scan base-package="org.model"/>
+    <context:annotation-config />
+    <context:component-scan base-package="org.model" />
 
     <!-- Define o DataSource e a conexão com o banco de dados -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -26,8 +24,8 @@
     </bean>
 
     <!-- Define as configurações do JPA -->
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-          scope="singleton">
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" scope="singleton">
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
@@ -45,6 +43,6 @@
     </bean>
 
     <!-- Ativa os recursos para os Repository -->
-    <jpa:repositories base-package="org.dao"/>
+    <jpa:repositories base-package="org.dao" />
 
 </beans>
