@@ -6,9 +6,6 @@
 
     <persistence-unit name="spring-data-jdev">
         <class>org.model.UsuarioSpringData</class>
-        <properties>
-            <property name="hibernate.show_sql" value="true"/>
-        </properties>
     </persistence-unit>
 
 </persistence>
