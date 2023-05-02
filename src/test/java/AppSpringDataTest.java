@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
 import java.util.Optional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -45,5 +46,27 @@ public class AppSpringDataTest {
         interfaceSpringDataUser.save(usuarioUpdate);
     }
 
+    @Test
+    public void deleteTest() {
+        Optional<UsuarioSpringData> usuarioSpringData = interfaceSpringDataUser.findById(2L);
+        interfaceSpringDataUser.delete(usuarioSpringData.orElse(new UsuarioSpringData()));
+    }
+
+    @Test
+    public void obterPorNomeTest() {
+        List<UsuarioSpringData> usuarios = interfaceSpringDataUser.obterPorNome("Pedro");
+        usuarios.forEach(System.out::println);
+    }
+
+    @Test
+    public void obterPorNomeParamTest() {
+        List<UsuarioSpringData> usuarios = interfaceSpringDataUser.obterPorNomeParam("o");
+        usuarios.forEach(System.out::println);
+    }
+
+    @Test
+    public void excluirPorNomeTest() {
+        interfaceSpringDataUser.excluirPorNome("Pedro");
+    }
 
 }
