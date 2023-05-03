@@ -1,6 +1,7 @@
 package org.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class UsuarioSpringData {
@@ -14,6 +15,9 @@ public class UsuarioSpringData {
     private String nome;
     private String email;
     private int idade;
+
+    @OneToMany(mappedBy = "usuarioSpringData", fetch = FetchType.EAGER)
+    private List<Telefone> telefones;
 
     public Long getId() {
         return id;
@@ -61,6 +65,14 @@ public class UsuarioSpringData {
 
     public void setIdade(int idade) {
         this.idade = idade;
+    }
+
+    public List<Telefone> getTelefones() {
+        return telefones;
+    }
+
+    public void setTelefones(List<Telefone> telefones) {
+        this.telefones = telefones;
     }
 
     @Override

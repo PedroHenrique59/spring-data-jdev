@@ -1,6 +1,8 @@
 import org.dao.InterfaceSpringDataUser;
+import org.dao.InterfaceTelefone;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.model.Telefone;
 import org.model.UsuarioSpringData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -16,7 +18,10 @@ public class AppSpringDataTest {
     @Autowired
     private InterfaceSpringDataUser interfaceSpringDataUser;
 
-    public void testeInsert() {
+    @Autowired
+    private InterfaceTelefone interfaceTelefone;
+
+    public void insertUsuarioSpringDataTest() {
         UsuarioSpringData usuarioSpringData = new UsuarioSpringData();
         usuarioSpringData.setNome("Joao");
         usuarioSpringData.setEmail("joao@gmail.com");
@@ -34,8 +39,8 @@ public class AppSpringDataTest {
 
     @Test
     public void findAllTest() {
-       Iterable<UsuarioSpringData> usuarios = interfaceSpringDataUser.findAll();
-       usuarios.forEach(System.out::println);
+        Iterable<UsuarioSpringData> usuarios = interfaceSpringDataUser.findAll();
+        usuarios.forEach(System.out::println);
     }
 
     @Test
@@ -67,6 +72,21 @@ public class AppSpringDataTest {
     @Test
     public void excluirPorNomeTest() {
         interfaceSpringDataUser.excluirPorNome("Pedro");
+    }
+
+    public void insertTelefoneTest() {
+        Telefone telefone = new Telefone();
+        telefone.setNumero("31 99999999");
+        telefone.setTipo("Celular");
+        telefone.setUsuarioSpringData(interfaceSpringDataUser.findById(1L).orElse(null));
+        interfaceTelefone.save(telefone);
+    }
+
+    @Test
+    public void obterTelefoneTest() {
+        UsuarioSpringData usuarioSpringData = interfaceSpringDataUser.findById(1L).orElse(new UsuarioSpringData());
+        List<Telefone> telefones = usuarioSpringData.getTelefones();
+        telefones.forEach(System.out::println);
     }
 
 }

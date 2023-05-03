@@ -6,6 +6,7 @@
 
     <persistence-unit name="spring-data-jdev">
         <class>org.model.UsuarioSpringData</class>
+        <class>org.model.Telefone</class>
     </persistence-unit>
 
 </persistence>
